@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anglers Access</title>
+<meta name="description" content="Anglers Access: an online marketplace for Irish fishing permits. A final-year project by Azeez Folawiyo, BSc E-Commerce in Retailing, TU Dublin 2024.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f8f4;
+  --surface: #ffffff;
+  --ink: #18241c;
+  --muted: #56645a;
+  --line: #dde5db;
+  --brand: #2e7d4f;
+  --brand-soft: #b4cbb4;
+  --accent: #e3f0e4;
+  --shadow: 0 10px 30px rgba(24, 36, 28, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1612;
+    --surface: #17211b;
+    --ink: #e7efe8;
+    --muted: #9fb0a4;
+    --line: #26342b;
+    --brand: #5fbf84;
+    --brand-soft: #2f4a37;
+    --accent: #1d2b22;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1612;
+  --surface: #17211b;
+  --ink: #e7efe8;
+  --muted: #9fb0a4;
+  --line: #26342b;
+  --brand: #5fbf84;
+  --brand-soft: #2f4a37;
+  --accent: #1d2b22;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 Inter, system-ui, sans-serif;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--brand); }
+h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.15; margin: 0 0 .5em; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+h3 { font-size: 1.25rem; }
+p { margin: 0 0 1em; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+/* nav */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
+nav .logo { font-family: Fraunces, serif; font-weight: 700; font-size: 1.15rem; color: var(--ink); text-decoration: none; margin-right: auto; }
+nav .links { display: flex; gap: 20px; }
+nav .links a { color: var(--muted); text-decoration: none; font-size: .95rem; font-weight: 500; }
+nav .links a:hover { color: var(--brand); }
+@media (max-width: 720px) { nav .links { display: none; } }
+
+/* hero */
+.hero { padding: 80px 0 60px; }
+.hero .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+.eyebrow { display: inline-block; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); background: var(--accent); padding: 6px 12px; border-radius: 99px; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); }
+.hero .lede { font-size: 1.2rem; color: var(--muted); max-width: 34em; }
+.hero .shot { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); background: #fff; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; font-size: .92rem; color: var(--muted); }
+.meta b { color: var(--ink); font-weight: 600; }
+@media (max-width: 860px) { .hero .grid { grid-template-columns: 1fr; } .hero { padding-top: 48px; } }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 0 0 40px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.stat .n { font-family: Fraunces, serif; font-size: 2.4rem; font-weight: 700; color: var(--brand); line-height: 1; }
+.stat .l { color: var(--muted); font-size: .92rem; margin-top: 8px; }
+.stats-3 { grid-template-columns: repeat(3, 1fr); }
+.stat { min-width: 0; }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } .stats-3 { grid-template-columns: 1fr; } }
+
+/* sections */
+section { padding: 64px 0; }
+section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-head { max-width: 680px; margin-bottom: 36px; }
+.section-head p { color: var(--muted); font-size: 1.08rem; }
+.kicker { font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); margin-bottom: 10px; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.card { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+section:not(.alt) .card { background: var(--surface); }
+.card h3 { font-family: Inter, sans-serif; font-size: 1.02rem; font-weight: 600; margin-bottom: 6px; }
+.card p { color: var(--muted); font-size: .95rem; margin: 0; }
+
+figure { margin: 0; }
+figure.shot { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); cursor: zoom-in; }
+figcaption { font-size: .88rem; color: var(--muted); margin-top: 10px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+
+/* bar list */
+.bars { display: grid; gap: 14px; }
+.bar .top { display: flex; justify-content: space-between; font-size: .95rem; margin-bottom: 6px; }
+.bar .top span:last-child { font-weight: 600; }
+.bar .track { height: 10px; border-radius: 99px; background: var(--accent); overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 99px; background: var(--brand); }
+
+ul.check { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ul.check li { padding-left: 28px; position: relative; }
+ul.check li::before { content: ""; position: absolute; left: 0; top: .5em; width: 14px; height: 8px; border-left: 2.5px solid var(--brand); border-bottom: 2.5px solid var(--brand); transform: rotate(-45deg); }
+
+/* timeline */
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+.timeline .card .wk { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+@media (max-width: 860px) { .timeline { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .timeline { grid-template-columns: 1fr; } }
+
+blockquote { margin: 0; padding: 18px 22px; border-left: 4px solid var(--brand); background: var(--accent); border-radius: 0 12px 12px 0; font-style: italic; }
+
+footer { padding: 48px 0; color: var(--muted); font-size: .92rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+
+/* lightbox */
+.lightbox { position: fixed; inset: 0; background: rgba(8, 12, 10, .88); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 50; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-height: 92vh; border-radius: 10px; background: #fff; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">🎣 Anglers Access</a>
+    <div class="links">
+      <a href="#problem">Problem</a>
+      <a href="#research">Research</a>
+      <a href="#build">Build</a>
+      <a href="#results">Results</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">Final-year project · TU Dublin 2024</span>
+      <h1>Anglers Access</h1>
+      <p class="lede">An online marketplace that lets anglers find Irish fisheries and book day or weekly permits in a few clicks, instead of hunting down a phone number or driving to a tackle shop.</p>
+      <div class="meta">
+        <span><b>Role</b> Research, design, build &amp; evaluation</span>
+        <span><b>Stack</b> WordPress, WooCommerce, Elementor, Stripe</span>
+        <span><b>Timeline</b> Sept 2023 to May 2024</span>
+      </div>
+    </div>
+    <figure class="shot"><img src="images/permits.png" alt="Anglers Access permits page with a map of fisheries and filters by species and county"></figure>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">74</div><div class="l">anglers surveyed</div></div>
+    <div class="stat"><div class="n">51</div><div class="l">fisheries contacted</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">clubs signed up across 7 counties</div></div>
+    <div class="stat"><div class="n">9/10</div><div class="l">rating from fishery reps</div></div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap two">
+    <div>
+      <div class="kicker">The problem</div>
+      <h2>Fishing hasn't caught up with how people book things now</h2>
+      <p>Fishing clubs around Ireland have seen a steep drop in younger anglers. My hypothesis was that the industry simply hasn't kept up with the last 30 years of tech, so it's losing touch with the people who book everything else on their phones.</p>
+      <p>Ireland has roughly <b>127 fisheries</b>. Only <b>42</b> have a website, and only <b>10</b> sell permits online. The rest sell over the phone or in a local shop, and the information about where to buy is often out of date or impossible to find. Plenty of clubs are only known by word of mouth.</p>
+    </div>
+    <div>
+      <div class="kicker">The idea</div>
+      <h2>One place to find a river and book a permit</h2>
+      <p>Anglers Access works like a ticketing site for fishing. Anglers browse fisheries on a map, filter by county or species, check where to park and get to the water, and book a permit for the day they want. Clubs get exposure to Irish anglers and to tourists, without paying anything.</p>
+      <blockquote>The research question: is there real demand for this from anglers, and would fisheries actually let a third party sell their permits?</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Research</div>
+      <h2>Testing the idea before trusting it</h2>
+      <p>I used a mixed-methods approach: a literature review, secondary market research, a survey of anglers, and meetings with fisheries all over the country.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card"><h3>📚 Literature review</h3><p>Looked at how ticketing moved from paper to digital, and used the Theory of Reasoned Action, Theory of Planned Behaviour and the Technology Acceptance Model to understand what makes people adopt a new way of buying.</p></div>
+      <div class="card"><h3>🌍 Market analysis</h3><p>Around 406,000 recreational anglers in Ireland, with Britain, Germany, France and North America making up most angling tourists. Main competitors: FishPal and Inland Fisheries Ireland.</p></div>
+      <div class="card"><h3>📋 Angler survey</h3><p>74 responses from freshwater anglers, broken down with pivot tables by age group and how many permits they buy each year.</p></div>
+      <div class="card"><h3>🤝 Fishery outreach</h3><p>Contacted 51 fisheries and met with clubs in person, using an early prototype of the site to pitch the idea.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">What anglers said</div>
+      <h2>Demand is there, and not just from young people</h2>
+      <p>I expected people over 50 to mostly prefer buying in person. They didn't: nearly half wanted to book online too.</p>
+    </div>
+
+    <div class="two">
+      <div>
+        <h3>Prefer to book and pay online, by age</h3>
+        <div class="bars">
+          <div class="bar"><div class="top"><span>Under 20</span><span>75%</span></div><div class="track"><div class="fill" style="width:75%"></div></div></div>
+          <div class="bar"><div class="top"><span>20 to 30</span><span>71%</span></div><div class="track"><div class="fill" style="width:71%"></div></div></div>
+          <div class="bar"><div class="top"><span>30 to 40</span><span>67%</span></div><div class="track"><div class="fill" style="width:67%"></div></div></div>
+          <div class="bar"><div class="top"><span>40 to 50</span><span>67%</span></div><div class="track"><div class="fill" style="width:67%"></div></div></div>
+          <div class="bar"><div class="top"><span>50+</span><span>46%</span></div><div class="track"><div class="fill" style="width:46%"></div></div></div>
+          <div class="bar"><div class="top"><span><b>All respondents</b></span><span>61%</span></div><div class="track"><div class="fill" style="width:61%"></div></div></div>
+        </div>
+        <p style="margin-top:24px;color:var(--muted)"><b style="color:var(--ink)">74%</b> said fisheries need a bigger online presence to attract the next generation, and <b style="color:var(--ink)">81%</b> use websites to research fishing when they travel.</p>
+      </div>
+      <div class="gallery" style="grid-template-columns:1fr">
+        <figure><div class="shot"><img src="images/survey-age.png" alt="Pivot table of preferred booking method by age group"></div><figcaption>Pivot table I built from the survey: preferred booking method by age.</figcaption></figure>
+        <figure><div class="shot"><img src="images/survey-presence.png" alt="Pie chart: 74.3% say fisheries need a larger online presence"></div><figcaption>74% want fisheries to be more visible online.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap two">
+    <div>
+      <div class="kicker">What fisheries said</div>
+      <h2>Harder sell, but 9 clubs said yes</h2>
+      <p>Of the 51 fisheries I reached, <b>9 signed up</b>, <b>16 are still deciding</b>, and <b>26 said no</b>. The no's taught me a lot:</p>
+      <ul class="check">
+        <li><b>34%</b> had closed, often because of pollution or not enough members. That alone shows how stale the information online is.</li>
+        <li><b>29%</b> weren't interested, mostly clubs run by older committees happy with how things are.</li>
+        <li><b>15%</b> only sell season memberships, not day permits.</li>
+        <li><b>15%</b> already sell online through FishPal or IFI.</li>
+        <li><b>7%</b> didn't want more attention on their waters because of poachers.</li>
+      </ul>
+    </div>
+    <div>
+      <figure><div class="shot"><img src="images/survey-travel.png" alt="Bar chart: 80.8% of anglers use websites to find angling information abroad"></div><figcaption>Where anglers look for information when fishing somewhere new.</figcaption></figure>
+      <p style="margin-top:24px">The clubs that joined loved the parking and access map. One said it would finally stop people cutting across a farmer's land to reach the river.</p>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The build</div>
+      <h2>A working prototype in four weekly sprints</h2>
+      <p>I started building early, in November 2023, so I'd have something real to show fisheries in the new year. I used Agile Scrum, which paid off when the first navigation idea turned out to be wrong.</p>
+    </div>
+
+    <figure class="shot"><img src="images/sprints.png" alt="Sprint board showing tasks to do, completed and uncompleted across four weeks"></figure>
+    <figcaption>My sprint board for November 2023.</figcaption>
+
+    <div class="timeline">
+      <div class="card"><div class="wk">Sprint 1</div><h3>Foundations</h3><p>Bought the anglersaccess.ie domain, set up SiteGround hosting, picked the Blocksy theme and Elementor, and built the home and about pages in a natural green palette.</p></div>
+      <div class="card"><div class="wk">Sprint 2</div><h3>Products &amp; bookings</h3><p>Created grouped products for day and weekly permits and added WooCommerce Bookings, with capacity limits so rivers don't get overcrowded.</p></div>
+      <div class="card"><div class="wk">Sprint 3</div><h3>Rethink the nav</h3><p>Scrapped the mega menu of counties. It was clunky, so counties and species moved into a filter sidebar on the permits page.</p></div>
+      <div class="card"><div class="wk">Sprint 4</div><h3>Maps</h3><p>Added a Google Maps view of every fishery, plus a per-club map template showing where to park and access the water.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Final design</div>
+      <h2>Find it, check it, book it</h2>
+      <p>In April 2024 I swapped the placeholder products for the 9 real clubs, added their access maps, set up Stripe for payments (it supports split payments so money can go straight to each fishery) and used AutomateWoo to email booking details to both the angler and the club.</p>
+    </div>
+    <div class="gallery">
+      <figure><div class="shot"><img src="images/home.png" alt="Anglers Access home page with fish species in Ireland"></div><figcaption>Home page: straight to permits, plus a guide to Irish fish species.</figcaption></figure>
+      <figure><div class="shot"><img src="images/permits.png" alt="Permits page with fishery map and filters"></div><figcaption>Permits page: map of every club, filter by species and county.</figcaption></figure>
+      <figure><div class="shot"><img src="images/booking.png" alt="Beara Anglers day permit booking page with calendar and Google Pay"></div><figcaption>Booking page: pick adults and children, choose a date, pay.</figcaption></figure>
+    </div>
+
+    <div class="two" style="margin-top:48px">
+      <div>
+        <h3>How it makes money</h3>
+        <p>A 10% service fee charged to the angler, capped at €10. Fisheries pay nothing, which mattered: several told me they wouldn't join if it cost them. The model is based on how ticketing sites like Ticketmaster charge.</p>
+      </div>
+      <figure><div class="shot" style="padding:12px"><img src="images/service-fee.png" alt="Service fee table: 10% of purchase, capped at 10 euro"></div></figure>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Evaluation</div>
+      <h2>Putting it in front of real users</h2>
+      <p>I tested the site with potential customers through a survey and with two fishery representatives and an Inland Fisheries Ireland employee through interviews.</p>
+    </div>
+
+    <div class="stats stats-3">
+      <div class="stat"><div class="n">86%</div><div class="l">strongly agreed they'd use it to buy a permit</div></div>
+      <div class="stat"><div class="n">9/10</div><div class="l">from both fishery reps, one of whom called himself "technologically illiterate"</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">performance or booking issues reported in interviews</div></div>
+    </div>
+
+    <div class="gallery">
+      <figure><div class="shot"><img src="images/feedback-comments.png" alt="User comments and improvement suggestions"></div><figcaption>Suggestions from testers.</figcaption></figure>
+      <figure><div class="shot"><img src="images/feedback-navigation.png" alt="User comments about navigation difficulties"></div><figcaption>Where people got stuck.</figcaption></figure>
+      <div>
+        <h3>What I'd fix next</h3>
+        <ul class="check">
+          <li>A clear <b>Buy now</b> button instead of "Read more", and a more obvious path to the cart.</li>
+          <li>Make the access map open in the Google Maps app for directions.</li>
+          <li>Higher quality photos, ideally my own instead of the clubs' Facebook images.</li>
+          <li>A dashboard so each club only sees its own bookings and payments.</li>
+          <li>Many more clubs. As the IFI rep put it, the site needs a critical mass of supply before anglers will rely on it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap two">
+    <div>
+      <div class="kicker">Takeaways</div>
+      <h2>What I learned</h2>
+      <p>The demand is real. 61% of anglers would rather book online, and the people who tested the site saw the value straight away. The hard part isn't the website, it's the supply: winning the trust of fisheries that are often run by older volunteer committees.</p>
+      <p>Building the prototype early was the best call I made. Walking into meetings with a working site turned an abstract pitch into something clubs could click through, and it's a big part of why 9 of them said yes.</p>
+    </div>
+    <div>
+      <div class="kicker">Credits</div>
+      <h3>Team</h3>
+      <p>Anglers Access was my final-year thesis for the BSc in E-Commerce in Retailing at TU Dublin, built as a team project with <b>Luke Watson</b> and <b>Lawrence Proseckin</b>, and supervised by <b>Dr Wael Rashwan</b>.</p>
+      <p style="color:var(--muted);font-size:.92rem">Fishery descriptions on the prototype were placeholders for display, and photos came from each club's own website or social media. The site was kept private and not launched publicly.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2024 Azeez Folawiyo</span>
+    <a href="https://github.com/c20744531">github.com/c20744531</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script>
+  const box = document.getElementById("lightbox");
+  const boxImg = box.querySelector("img");
+  document.querySelectorAll(".shot img").forEach((img) => {
+    img.closest(".shot").style.cursor = "zoom-in";
+    img.addEventListener("click", () => {
+      boxImg.src = img.src;
+      boxImg.alt = img.alt;
+      box.classList.add("open");
+    });
+  });
+  box.addEventListener("click", () => box.classList.remove("open"));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") box.classList.remove("open"); });
+</script>
+</body>
+</html>
